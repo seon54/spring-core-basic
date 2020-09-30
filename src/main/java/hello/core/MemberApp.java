@@ -3,17 +3,18 @@ package hello.core;
 import hello.core.member.Grade;
 import hello.core.member.Member;
 import hello.core.member.MemberService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MemberApp {
 
     public static void main(String[] args) {
-        /*
-        *  문제점
-        *  1. 다른 저장소로 변경할 때 OCP(개방-폐쇄 원칙)을 지킬 수 없다.
-        *  2. DIP(의존 역전 원칙) - 의존 관계가 인터페이스 뿐만 아니라 구현까지 모두 의존하는 문제점이 있다.
-        * */
-        AppConfig appConfig = new AppConfig();
-        MemberService memberService = appConfig.memberService();
+//        AppConfig appConfig = new AppConfig();
+//        MemberService memberService = appConfig.memberService();
+
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
+
         Member member = new Member(1L, "memberA", Grade.VIP);
         memberService.join(member);
 
