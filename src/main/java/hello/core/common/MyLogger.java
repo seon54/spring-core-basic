@@ -19,7 +19,7 @@ public class MyLogger {
     }
 
     public void log(String meessage) {
-        System.out.println("[" + uuid + "]" + "[" + requestURL + "] " + meessage);
+        System.out.println("[" + uuid + "]" + " [" + requestURL + "] " + meessage);
     }
 
     @PostConstruct
@@ -30,7 +30,6 @@ public class MyLogger {
 
     @PreDestroy
     public void close() {
-        System.out.println();
         System.out.println("[" + uuid + "] request scope bean closed: " + this);
     }
 }
